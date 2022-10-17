@@ -18,24 +18,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexWrap: 'wrap'
     },
-    square: {
+    indexWrapper: {
         width: 24,
         height: 24,
         backgroundColor: '#55BCF6',
-        opacity: 0.4,
+        opacity: 0.9,
         borderRadius: 5,
         marginRight: 15,
+    },
+    index: {
+        textAlign: 'center',
+        color: '#fff',
+        paddingTop: 4
     },
     itemText: {
         maxWidth: '80%',
     },
-    circular: {
-        width: 12,
-        height: 12,
+    removeWrapper: {
+        width: 18,
+        height: 18,
         borderColor: '#55BCF6',
         borderWidth: 2,
         borderRadius: 5,
     },
+    removeIcon: {
+        color: '#55BCF6',
+        alignSelf: 'center',
+        fontSize: 11
+    }
 });
 
 const Task = ({ item }) => {
@@ -43,6 +53,8 @@ const Task = ({ item }) => {
     const dispatch = useDispatch();
     const data = useSelector(state => state);
     const taskItems = data.taskItems.taskItems;
+
+    const taskIndex = taskItems.indexOf(item) + 1;
 
     const removeTodo = (item) => {
         const todoIndex = taskItems.indexOf(item);
@@ -52,18 +64,22 @@ const Task = ({ item }) => {
         } else {
           alert(`${item}is not in the Todo List`);
         }
-      }
+    }
 
     return (
-        <TouchableOpacity onPress={() => removeTodo(item)}>
+        
             <View style={styles.item}>
                 <View style={styles.itemLeft}>
-                    <View style={styles.square}></View>
+                    <View style={styles.indexWrapper}><Text style={styles.index}>{taskIndex}</Text></View>
                     <Text style={styles.itemText}>{item}</Text>
                 </View>
-                <View style={styles.circular}></View>
+                <TouchableOpacity onPress={() => removeTodo(item)}>
+                <View style={styles.removeWrapper}>
+                    <Text style={styles.removeIcon}>x</Text>
+                </View>
+                </TouchableOpacity>
             </View>
-        </TouchableOpacity>
+       
     )
 }
 
