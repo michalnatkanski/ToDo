@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
     itemsWrapper: {
-        marginBottom: 100,
+        marginBottom: 155,
         marginTop: 30,
     },
 });
@@ -20,6 +20,7 @@ const Items = () => {
             <FlatList
                 style={styles.itemsWrapper}
                 data={taskItems}
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <View >
                         <Task item={item}/>
