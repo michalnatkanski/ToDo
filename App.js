@@ -1,68 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import {
-  Keyboard,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
 //components
-import Task from './src/components/task';
-import Items from './src/components/items';
-import InputBar from './src/components/input-bar';
+import Todo from './src/components/todo';
+
+import rootReducer from './src/redux/reducers/rootReducer';
+
+const store = createStore(rootReducer, applyMiddleware(logger));
+
 const App = () => {
- 
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
-
-  const handleAddTask = () => {
-    Keyboard.dismiss();
-    setTaskItems([...taskItems, task]);
-    setTask(null);
-  }
-
-  const completeTask = (i) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(i, 1);
-    setTaskItems(itemsCopy);
-  }
-
-  const editTask = (i) => {
-
-  }
-// dorobic edytowanie
-// kontener flatlist aby mozna bylo scrollowac
-// oddzielic style do plikow
-// przerobic component task aby przyjmowal edycje oraz usuwanie
-// animacja pokazujaca opcje do wyboru, 
 
   return (
-    <View style={styles.container}>
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks: {taskItems.length}</Text>
-        {/* Items list */}
-        <Items items={taskItems} completeTask={completeTask}/>
-      </View>
-        {/* input bar */}
-        <InputBar task={task} setTask={setTask} handleAddTask={handleAddTask}/>
-    </View>
+    <Provider store={store}>
+      <Todo />
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E8EAED',
-  },
-  tasksWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
 
 export default App;

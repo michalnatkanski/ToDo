@@ -1,34 +1,32 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
+import { View, FlatList, StyleSheet } from "react-native"
 //components
 import Task from "../task";
-
-const Items = ({ items, completeTask }) => {
-
-    return (
-        <ScrollView
-            style={styles.itemsWrapper}
-            contentInsetAdjustmentBehavior='automatic'
-            showsHorizontalScrollIndicator={false}
-        >
-            <View style={styles.items}>
-                {items.map((item, i) => (
-                    <TouchableOpacity key={i} onPress={() => completeTask(i)}>
-                        <Task text={item} />
-                    </TouchableOpacity>
-                ))}
-            </View>
-        </ScrollView>
-    )
-}
+import { useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
     itemsWrapper: {
-        marginBottom: 100
-    },
-    items: {
+        marginBottom: 100,
         marginTop: 30,
     },
 });
+
+const Items = () => {
+
+    const data = useSelector(state => state);
+    const taskItems = data.taskItems.taskItems;
+
+    return (
+            <FlatList
+                style={styles.itemsWrapper}
+                data={taskItems}
+                renderItem={({ item }) => (
+                    <View >
+                        <Task item={item}/>
+                    </View>
+                )}
+            />
+    )
+}
 
 export default Items;

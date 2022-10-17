@@ -1,22 +1,16 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native"
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+  Keyboard,
+} from "react-native";
 
-const InputBar = ({ setTask, handleAddTask, task }) => {
-
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.writeTaskWrapper}
-    >
-      <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)} />
-      <TouchableOpacity onPress={() => handleAddTask()}>
-        <View style={styles.addWrapper}>
-          <Text style={styles.addText}>+</Text>
-        </View>
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
-  )
-}
+import { useDispatch, useSelector } from "react-redux";
+import { AddTodo } from "../../redux/actions/actions";
 
 const styles = StyleSheet.create({
   writeTaskWrapper: {
@@ -63,5 +57,41 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
+
+const InputBar = () => {
+
+  const [taskValue, setTaskValue] = useState();
+
+  const dispatch = useDispatch();
+  const data = useSelector(state => state);
+  const taskItems = data.taskItems.taskItems;
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    if (taskItems && !taskItems.includes(taskValue)) {
+      dispatch(AddTodo(taskValue));
+    }
+    setTaskValue(null);
+  }
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.writeTaskWrapper}
+    >
+      <TextInput
+        style={styles.input}
+        placeholder={'Write a task'}
+        value={taskValue}
+        onChangeText={setTaskValue}
+      />
+      <TouchableOpacity onPress={() => handleAddTask()}>
+        <View style={styles.addWrapper}>
+          <Text style={styles.addText}>+</Text>
+        </View>
+      </TouchableOpacity>
+    </KeyboardAvoidingView>
+  )
+}
 
 export default InputBar;

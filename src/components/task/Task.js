@@ -1,18 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-
-const Task = ({text}) => {
-
-    return (
-        <View style={styles.item}>
-            <View style={styles.itemLeft}>
-                <View style={styles.square}></View>
-                <Text style={styles.itemText}>{text}</Text>
-            </View>
-            <View style={styles.circular}></View>
-        </View>
-    )
-}
+import { RemoveTodo } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
     item: {
@@ -48,5 +37,34 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
 });
+
+const Task = ({ item }) => {
+
+    const dispatch = useDispatch();
+    const data = useSelector(state => state);
+    const taskItems = data.taskItems.taskItems;
+
+    const removeTodo = (item) => {
+        const todoIndex = taskItems.indexOf(item);
+        
+        if (todoIndex > -1) {
+          dispatch(RemoveTodo(item));
+        } else {
+          alert(`${item}is not in the Todo List`);
+        }
+      }
+
+    return (
+        <TouchableOpacity onPress={() => removeTodo(item)}>
+            <View style={styles.item}>
+                <View style={styles.itemLeft}>
+                    <View style={styles.square}></View>
+                    <Text style={styles.itemText}>{item}</Text>
+                </View>
+                <View style={styles.circular}></View>
+            </View>
+        </TouchableOpacity>
+    )
+}
 
 export default Task;
