@@ -1,6 +1,6 @@
 import { ADD_TODO, REMOVE_TODO } from "../actions/actionTypes";
 
-const INITIAL_STATE = {taskItems: []};
+const INITIAL_STATE = {taskItems: ['make dinner', 'clean the apartment' ,'go to the gym']};
 
 const todoReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
