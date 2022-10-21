@@ -1,4 +1,3 @@
-import task from "../../components/task";
 import { ADD_TODO, REMOVE_TODO } from "../actions/actionTypes";
 
 const INITIAL_STATE = {taskItems: []};

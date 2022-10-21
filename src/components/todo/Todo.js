@@ -36,10 +36,8 @@ const Todo = () => {
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks: {taskItems.length}</Text>
-        {/* Items list */}
         <Items />
       </View>
-        {/* input bar */}
         <InputBar />
     </View>
   );
