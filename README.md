@@ -2,12 +2,16 @@
 
 ## Table of contents
 * [General info](#general-info)
+* [Screen](#screen)
 * [Technologies](#technologies)
 * [Setup](#setup)
 
 ## General info
-This project is simple React Native - ToDo App.
+This project is simple React Native - ToDo App. You can add tasks and remove it from the list.
+
+## Screen
 <img src="src/assets/images/screen.png" width="128"/>
+
 ## Technologies
 Project is created with:
 * React Native 0.68.2
@@ -22,3 +26,4 @@ $ git clone (repo)
 $ npm install
 $ npx react-native run-ios/android
 ```
+
