@@ -11,6 +11,7 @@ import Items from '../items';
 import InputBar from '../input-bar';
 
 import { useSelector } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient'
 
 const styles = StyleSheet.create({
   container: {
@@ -33,13 +34,17 @@ const Todo = () => {
   const taskItems = data.taskItems.taskItems; 
 
   return (
-    <View style={styles.container}>
+   
+       <LinearGradient style={styles.container} colors={['#92FFF9', '#3A49F9']}>
       <View style={styles.tasksWrapper}>
+     
         <Text style={styles.sectionTitle}>Today's tasks: {taskItems.length}</Text>
+       
         <Items />
       </View>
         <InputBar />
-    </View>
+        </LinearGradient>
+   
   );
 };
 

@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { RemoveTodo } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Feather  from 'react-native-vector-icons/Feather';
+
+Feather.loadFont();
 
 const styles = StyleSheet.create({
     item: {
@@ -33,19 +36,7 @@ const styles = StyleSheet.create({
     },
     itemText: {
         maxWidth: '80%',
-    },
-    removeWrapper: {
-        width: 18,
-        height: 18,
-        borderColor: '#55BCF6',
-        borderWidth: 2,
-        borderRadius: 5,
-    },
-    removeIcon: {
-        color: '#55BCF6',
-        alignSelf: 'center',
-        fontSize: 11
-    }
+    }, 
 });
 
 const Task = ({ item }) => {
@@ -75,7 +66,7 @@ const Task = ({ item }) => {
                 </View>
                 <TouchableOpacity onPress={() => removeTodo(item)}>
                 <View style={styles.removeWrapper}>
-                    <Text style={styles.removeIcon}>x</Text>
+                    <Feather name="x-circle" size={25} color={'#55BCF6'}/>
                 </View>
                 </TouchableOpacity>
             </View>
