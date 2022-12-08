@@ -1,1 +1,1 @@
-export { default } from './InputBar';
+export {default} from './InputBar';
