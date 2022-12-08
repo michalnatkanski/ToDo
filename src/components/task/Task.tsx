@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {RemoveTodo} from '../../redux/actions/actions';
-import {useDispatch, useSelector} from 'react-redux';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { RemoveTodo } from '../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Task = ({item}: any) => {
+const Task = ({ item }: { item: string }) => {
   const dispatch = useDispatch();
   const data = useSelector(state => state);
   // @ts-expect-error TS(2571): Object is of type 'unknown'.
@@ -48,14 +48,13 @@ const Task = ({item}: any) => {
 
   const taskIndex = taskItems.indexOf(item) + 1;
 
-  const removeTodo = (item: any) => {
+  const removeTodo = (item: string) => {
     const todoIndex = taskItems.indexOf(item);
 
     if (todoIndex > -1) {
       dispatch(RemoveTodo(item));
     } else {
-      // @ts-expect-error TS(2304): Cannot find name 'alert'.
-      alert(`${item}is not in the Todo List`);
+      console.log(`${item}is not in the Todo List`);
     }
   };
 
@@ -68,8 +67,7 @@ const Task = ({item}: any) => {
         <Text style={styles.itemText}>{item}</Text>
       </View>
       <TouchableOpacity onPress={() => removeTodo(item)}>
-        // @ts-expect-error TS(2339): Property 'removeWrapper' does not exist on type '{... Remove this comment to see the full error message
-        <View style={styles.removeWrapper}>
+        <View>
           <Feather name="x-circle" size={25} color={'#55BCF6'} />
         </View>
       </TouchableOpacity>

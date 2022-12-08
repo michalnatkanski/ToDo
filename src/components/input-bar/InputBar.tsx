@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,8 +9,10 @@ import {
   Keyboard,
 } from 'react-native';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {AddTodo} from '../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { AddTodo } from '../../redux/actions/actions';
+
+
 
 const styles = StyleSheet.create({
   writeTaskWrapper: {
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
 });
 
 const InputBar = () => {
-  const [taskValue, setTaskValue] = useState();
+  const [taskValue, setTaskValue] = useState<string | null>();
 
   const dispatch = useDispatch();
   const data = useSelector(state => state);
@@ -71,7 +73,6 @@ const InputBar = () => {
     if (taskItems && !taskItems.includes(taskValue)) {
       dispatch(AddTodo(taskValue));
     }
-    // @ts-expect-error TS(2345): Argument of type 'null' is not assignable to param... Remove this comment to see the full error message
     setTaskValue(null);
   };
 
@@ -83,9 +84,7 @@ const InputBar = () => {
       <TextInput
         style={styles.input}
         placeholder={'Write a task'}
-        value={taskValue}
-        // @ts-expect-error TS(2769): No overload matches this call.
-        onChangeText={setTaskValue}
+        onChangeText={value => setTaskValue(value)}
       />
       <TouchableOpacity onPress={() => handleAddTask()}>
         <View style={styles.addWrapper}>
