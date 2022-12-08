@@ -1,17 +1,13 @@
 import React from 'react';
 
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 //components
 import Items from '../items';
 import InputBar from '../input-bar';
 
 import { useSelector } from 'react-redux';
-import LinearGradient from 'react-native-linear-gradient'
+import LinearGradient from 'react-native-linear-gradient';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,22 +25,21 @@ const styles = StyleSheet.create({
 });
 
 const Todo = () => {
- 
   const data = useSelector(state => state);
-  const taskItems = data.taskItems.taskItems; 
+  // @ts-expect-error TS(2571): Object is of type 'unknown'.
+  const taskItems = data.taskItems.taskItems;
 
   return (
-   
-       <LinearGradient style={styles.container} colors={['#92FFF9', '#3A49F9']}>
+    <LinearGradient style={styles.container} colors={['#92FFF9', '#3A49F9']}>
       <View style={styles.tasksWrapper}>
-     
-        <Text style={styles.sectionTitle}>Today's tasks: {taskItems.length}</Text>
-       
+        <Text style={styles.sectionTitle}>
+          Today's tasks: {taskItems.length}
+        </Text>
+
         <Items />
       </View>
-        <InputBar />
-        </LinearGradient>
-   
+      <InputBar />
+    </LinearGradient>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -7,10 +7,12 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Keyboard,
-} from "react-native";
+} from 'react-native';
 
-import { useDispatch, useSelector } from "react-redux";
-import { AddTodo } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { AddTodo } from '../../redux/actions/actions';
+
+
 
 const styles = StyleSheet.create({
   writeTaskWrapper: {
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 60,
     width: 250,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 9,
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 9,
@@ -54,16 +56,16 @@ const styles = StyleSheet.create({
     elevation: 18,
   },
   addText: {
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
 
 const InputBar = () => {
-
-  const [taskValue, setTaskValue] = useState();
+  const [taskValue, setTaskValue] = useState<string | null>();
 
   const dispatch = useDispatch();
   const data = useSelector(state => state);
+  // @ts-expect-error TS(2571): Object is of type 'unknown'.
   const taskItems = data.taskItems.taskItems;
 
   const handleAddTask = () => {
@@ -72,18 +74,17 @@ const InputBar = () => {
       dispatch(AddTodo(taskValue));
     }
     setTaskValue(null);
-  }
+  };
 
   return (
     <KeyboardAvoidingView
+      // @ts-expect-error TS(2304): Cannot find name 'Platform'.
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.writeTaskWrapper}
-    >
+      style={styles.writeTaskWrapper}>
       <TextInput
         style={styles.input}
         placeholder={'Write a task'}
-        value={taskValue}
-        onChangeText={setTaskValue}
+        onChangeText={value => setTaskValue(value)}
       />
       <TouchableOpacity onPress={() => handleAddTask()}>
         <View style={styles.addWrapper}>
@@ -91,7 +92,7 @@ const InputBar = () => {
         </View>
       </TouchableOpacity>
     </KeyboardAvoidingView>
-  )
-}
+  );
+};
 
 export default InputBar;
