@@ -1,15 +1,9 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList } from 'react-native';
+import { styles } from './Items.styles';
 //components
 import Task from '../task';
 import { useSelector } from 'react-redux';
-
-const styles = StyleSheet.create({
-  itemsWrapper: {
-    marginBottom: 155,
-    marginTop: 30,
-  },
-});
 
 interface State {
   taskItems: Array<string>

@@ -1,44 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { styles } from './Task.styles';
 import { RemoveTodo } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Feather from 'react-native-vector-icons/Feather';
 
 Feather.loadFont();
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
-  itemLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-  },
-  indexWrapper: {
-    width: 24,
-    height: 24,
-    backgroundColor: '#55BCF6',
-    opacity: 0.9,
-    borderRadius: 5,
-    marginRight: 15,
-  },
-  index: {
-    textAlign: 'center',
-    color: '#fff',
-    paddingTop: 4,
-  },
-  itemText: {
-    maxWidth: '80%',
-  },
-});
 
 interface State {
   taskItems: Array<string>
