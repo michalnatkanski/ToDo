@@ -65,7 +65,6 @@ interface State {
 
 const InputBar = () => {
   const [taskValue, setTaskValue] = useState<string>('');
-
   const dispatch = useDispatch();
   const taskItems = useSelector((state: State) => state.taskItems);
 
