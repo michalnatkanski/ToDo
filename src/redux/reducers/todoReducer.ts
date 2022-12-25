@@ -1,25 +1,28 @@
-import {ADD_TODO, REMOVE_TODO} from '../actions/actionTypes';
+import { ADD_TODO, REMOVE_TODO } from '../actions/actionTypes';
+
+interface action {
+  type: string;
+  payload: string;
+}
 
 const INITIAL_STATE = {
-  taskItems: ['make a dinner', 'go to the store', 'go to the gym'],
+  taskItems: [],
 };
 
-const todoReducer = (state = INITIAL_STATE, action: any) => {
+const todoReducer = (state = INITIAL_STATE.taskItems, action: action) => {
   switch (action.type) {
     case ADD_TODO:
-      return {taskItems: [...state.taskItems, action.payload]};
+      return [...state, action.payload];
     case REMOVE_TODO:
-      return {taskItems: handleRemoveTodo(action.payload, state.taskItems)};
+      return [...handleRemoveTodo(action.payload, state)];
     default:
       return state;
   }
 };
 
-const handleRemoveTodo = (item: any, taskItems: any) => {
+const handleRemoveTodo = (item: string, taskItems: Array<string>) => {
   const todoIndex = taskItems.indexOf(item);
-
   taskItems.splice(todoIndex, 1);
-
   return taskItems;
 };
 

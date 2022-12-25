@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 //components
 import Task from '../task';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   itemsWrapper: {
@@ -11,17 +11,19 @@ const styles = StyleSheet.create({
   },
 });
 
+interface State {
+  taskItems: Array<string>
+}
+
 const Items = () => {
-  const data = useSelector(state => state);
-  // @ts-expect-error TS(2571): Object is of type 'unknown'.
-  const taskItems = data.taskItems.taskItems;
+  const taskItems = useSelector((state: State) => state.taskItems);
 
   return (
     <FlatList
       style={styles.itemsWrapper}
       data={taskItems}
       showsVerticalScrollIndicator={false}
-      renderItem={({item}) => (
+      renderItem={({ item }) => (
         <View>
           <Task item={item} />
         </View>

@@ -7,12 +7,11 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Keyboard,
+  Platform,
 } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AddTodo } from '../../redux/actions/actions';
-
-
 
 const styles = StyleSheet.create({
   writeTaskWrapper: {
@@ -60,30 +59,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const InputBar = () => {
-  const [taskValue, setTaskValue] = useState<string | null>();
+interface State {
+  taskItems: Array<string>
+}
 
+const InputBar = () => {
+  const [taskValue, setTaskValue] = useState<string>('');
   const dispatch = useDispatch();
-  const data = useSelector(state => state);
-  // @ts-expect-error TS(2571): Object is of type 'unknown'.
-  const taskItems = data.taskItems.taskItems;
+  const taskItems = useSelector((state: State) => state.taskItems);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
-    if (taskItems && !taskItems.includes(taskValue)) {
+    if (taskItems && !taskItems.includes(taskValue) && taskValue) {
       dispatch(AddTodo(taskValue));
     }
-    setTaskValue(null);
+    setTaskValue('');
   };
 
   return (
     <KeyboardAvoidingView
-      // @ts-expect-error TS(2304): Cannot find name 'Platform'.
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior={(Platform.OS) === 'ios' ? 'padding' : 'height'}
       style={styles.writeTaskWrapper}>
       <TextInput
         style={styles.input}
         placeholder={'Write a task'}
+        value={taskValue}
         onChangeText={value => setTaskValue(value)}
       />
       <TouchableOpacity onPress={() => handleAddTask()}>
