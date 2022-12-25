@@ -40,22 +40,21 @@ const styles = StyleSheet.create({
   },
 });
 
+interface State {
+  taskItems: Array<string>
+}
+
 const Task = ({ item }: { item: string }) => {
   const dispatch = useDispatch();
-  const data = useSelector(state => state);
-  // @ts-expect-error TS(2571): Object is of type 'unknown'.
-  const taskItems = data.taskItems.taskItems;
+  const taskItems = useSelector((state: State) => state.taskItems);
 
   const taskIndex = taskItems.indexOf(item) + 1;
 
   const removeTodo = (item: string) => {
-    const todoIndex = taskItems.indexOf(item);
+    const todoIndex = taskItems.indexOf(item) + 1;
 
-    if (todoIndex > -1) {
-      dispatch(RemoveTodo(item));
-    } else {
-      console.log(`${item}is not in the Todo List`);
-    }
+    if (todoIndex < -1) return;
+    dispatch(RemoveTodo(item));
   };
 
   return (

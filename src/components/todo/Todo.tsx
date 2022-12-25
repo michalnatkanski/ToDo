@@ -24,18 +24,19 @@ const styles = StyleSheet.create({
   },
 });
 
+interface State {
+  taskItems: Array<string>
+}
+
 const Todo = () => {
-  const data = useSelector(state => state);
-  // @ts-expect-error TS(2571): Object is of type 'unknown'.
-  const taskItems = data.taskItems.taskItems;
+  const tasks = useSelector((state: State) => state.taskItems);
 
   return (
     <LinearGradient style={styles.container} colors={['#92FFF9', '#3A49F9']}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>
-          Today's tasks: {taskItems.length}
+          Today's tasks: {tasks.length}
         </Text>
-
         <Items />
       </View>
       <InputBar />

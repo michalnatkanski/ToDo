@@ -1,11 +1,11 @@
-import {ADD_TODO, REMOVE_TODO} from './actionTypes';
+import { ADD_TODO, REMOVE_TODO } from './actionTypes';
 
-export const AddTodo = (payload: any) => ({
+export const AddTodo = (payload: string) => ({
   type: ADD_TODO,
   payload,
 });
 
-export const RemoveTodo = (payload: any) => ({
+export const RemoveTodo = (payload: string) => ({
   type: REMOVE_TODO,
   payload,
 });
