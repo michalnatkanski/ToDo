@@ -1,20 +1,16 @@
 import React from 'react';
-
-import {Provider} from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'redu... Remove this comment to see the full error message
-import logger from 'redux-logger';
-import {createStore, applyMiddleware} from 'redux';
-//components
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import Todo from './src/components/todo';
-
-import rootReducer from './src/redux/reducers/rootReducer';
-
-const store = createStore(rootReducer, applyMiddleware(logger));
+import { store, persistor } from './src/redux/reducers/rootReducer';
+import { Text } from 'react-native';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Todo />
+      <PersistGate loading={<Text>Loading...</Text>} persistor={persistor}>
+        <Todo />
+      </PersistGate>
     </Provider>
   );
 };
