@@ -31,7 +31,7 @@ const InputBar = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={(Platform.OS) === 'ios' ? 'padding' : 'height'}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.writeTaskWrapper}>
       <TextInput
         style={styles.input}

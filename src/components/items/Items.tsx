@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import { styles } from './Items.styles';
-//components
 import Task from '../task';
 import { useSelector } from 'react-redux';
 
