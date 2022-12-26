@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.MAIN_COLORS.WHITE,
         padding: 15,
         borderRadius: 10,
         flexDirection: 'row',
@@ -18,14 +19,14 @@ export const styles = StyleSheet.create({
     indexWrapper: {
         width: 24,
         height: 24,
-        backgroundColor: '#55BCF6',
+        backgroundColor: colors.MAIN_COLORS.PRIMARY,
         opacity: 0.9,
         borderRadius: 5,
         marginRight: 15,
     },
     index: {
         textAlign: 'center',
-        color: '#fff',
+        color: colors.MAIN_COLORS.WHITE,
         paddingTop: 4,
     },
     itemText: {

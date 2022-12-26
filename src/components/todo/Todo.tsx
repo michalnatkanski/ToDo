@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './Todo.styles';
-//components
+import { colors } from '../../styles';
 import Items from '../items';
 import InputBar from '../input-bar';
 import { useSelector } from 'react-redux';
@@ -16,7 +16,12 @@ const Todo = () => {
 
   return (
 
-    <LinearGradient style={styles.backgroundContainer} colors={['#92FFF9', '#3A49F9']}>
+    <LinearGradient
+      style={styles.backgroundContainer}
+      colors={[
+        colors.MAIN_COLORS.ACCENT_1,
+        colors.MAIN_COLORS.ACCENT_2
+      ]}>
       <SafeAreaView style={styles.container}>
         <View style={styles.tasksWrapper}>
           <Text style={styles.sectionTitle}>

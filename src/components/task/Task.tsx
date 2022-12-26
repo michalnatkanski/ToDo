@@ -4,6 +4,7 @@ import { styles } from './Task.styles';
 import { RemoveTodo } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Feather from 'react-native-vector-icons/Feather';
+import { colors } from '../../styles';
 
 Feather.loadFont();
 
@@ -34,7 +35,11 @@ const Task = ({ item }: { item: string }) => {
       </View>
       <TouchableOpacity onPress={() => removeTodo(item)}>
         <View>
-          <Feather name="x-circle" size={25} color={'#55BCF6'} />
+          <Feather
+            name="x-circle"
+            size={25}
+            color={colors.MAIN_COLORS.PRIMARY}
+          />
         </View>
       </TouchableOpacity>
     </View>
