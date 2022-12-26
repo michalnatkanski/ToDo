@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../styles';
+import { colors, consts } from '../../styles';
 
 export const styles = StyleSheet.create({
     item: {
         backgroundColor: colors.MAIN_COLORS.WHITE,
         padding: 15,
-        borderRadius: 10,
+        borderRadius: consts.BORDER_RADIUS.TASK,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
         height: 24,
         backgroundColor: colors.MAIN_COLORS.PRIMARY,
         opacity: 0.9,
-        borderRadius: 5,
+        borderRadius: consts.BORDER_RADIUS.TASK_INDEX,
         marginRight: 15,
     },
     index: {

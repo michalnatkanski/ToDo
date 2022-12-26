@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../styles";
+import { colors, consts } from "../../styles";
 
 export const styles = StyleSheet.create({
     writeTaskWrapper: {
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 15,
         backgroundColor: colors.MAIN_COLORS.WHITE,
-        borderRadius: 60,
+        borderRadius: consts.BORDER_RADIUS.INPUT,
         width: 250,
         shadowColor: colors.MAIN_COLORS.BLACK,
         shadowOffset: {
@@ -23,14 +23,14 @@ export const styles = StyleSheet.create({
             height: 9,
         },
         shadowOpacity: 0.48,
-        shadowRadius: 11.95,
+        shadowRadius: consts.SHADOW_RADIUS.INPUT,
         elevation: 18,
     },
     addWrapper: {
         width: 60,
         height: 60,
         backgroundColor: colors.MAIN_COLORS.WHITE,
-        borderRadius: 60,
+        borderRadius: consts.BORDER_RADIUS.INPUT,
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: colors.MAIN_COLORS.BLACK,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
             height: 9,
         },
         shadowOpacity: 0.48,
-        shadowRadius: 11.95,
+        shadowRadius: consts.SHADOW_RADIUS.INPUT,
         elevation: 18,
     },
     addText: {
