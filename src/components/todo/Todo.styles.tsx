@@ -1,12 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: {
+    backgroundContainer: {
         flex: 1,
         backgroundColor: '#E8EAED',
     },
+    container: {
+        flex: 1
+    },
     tasksWrapper: {
-        paddingTop: 80,
+        paddingTop: 20,
         paddingHorizontal: 20,
     },
     sectionTitle: {
