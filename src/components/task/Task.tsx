@@ -12,7 +12,11 @@ interface State {
   taskItems: Array<string>
 }
 
-const Task = ({ item }: { item: string }) => {
+interface Props {
+  item: string;
+}
+
+const Task: React.FC<Props> = ({ item }) => {
   const dispatch = useDispatch();
   const taskItems = useSelector((state: State) => state.taskItems);
 
