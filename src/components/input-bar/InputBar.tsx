@@ -34,12 +34,16 @@ const InputBar = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.writeTaskWrapper}>
       <TextInput
+        testID='input'
         style={styles.input}
         placeholder={'Write a task'}
         value={taskValue}
         onChangeText={value => setTaskValue(value)}
       />
-      <TouchableOpacity onPress={() => handleAddTask()}>
+      <TouchableOpacity
+        testID='add-task'
+        onPress={() => handleAddTask()}
+      >
         <View style={styles.addWrapper}>
           <Text style={styles.addText}>+</Text>
         </View>

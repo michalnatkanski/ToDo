@@ -1,8 +1,10 @@
-import 'react-native';
-import React from 'react';
-import App from '../App';
-import renderer from 'react-test-renderer';
+import React from 'react'
+import { render } from '@testing-library/react-native'
 
-it('renders correctly', () => {
-  renderer.create(<App />);
-});
+import App from '../App'
+
+describe('With React Testing Library', () => {
+  it('Shows "Hello world!"', () => {
+    render(<App />)
+  })
+})
